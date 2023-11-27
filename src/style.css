@@ -24,10 +24,47 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.calulator-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  border: 1px solid black;
+  justify-content: center;
+  
+}
+.calculator-screen {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator-screen input {
+  width: 100%;
+  height: 100%;
+  font-size: 3.2em;
+  line-height: 1.1;
+  text-align: left;
+  border: none;
+  background: none;
+  color: #fff;
+  padding: 0 10px;
+  box-shadow: none;
+  outline: none;
+  appearance: none;
+}
+
+.calulator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4,75px);
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-shadow:
 }
 
 h1 {
@@ -42,19 +79,6 @@ h1 {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
 .card {
   padding: 2em;
 }
@@ -62,6 +86,7 @@ h1 {
 .read-the-docs {
   color: #888;
 }
+
 
 button {
   border-radius: 8px;
