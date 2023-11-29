@@ -1,25 +1,24 @@
-import { re } from "mathjs";
-
-
 // Get HTML elements
 const numberButtons = document.querySelectorAll<HTMLButtonElement>('.number');
 const operatorButtons = document.querySelectorAll<HTMLButtonElement>('.operator');
 const equalButton = document.querySelector<HTMLButtonElement>('.equal');
 const clearButton = document.querySelector<HTMLButtonElement>('.clear');
 const display = document.querySelector<HTMLDivElement>('.calculator__display');
+const log = document.querySelector<HTMLDivElement>('.calculator-log');
 
 // Check if all elements are found
 if (!numberButtons || !operatorButtons || !equalButton || !clearButton) {
   throw new Error("Buttons not found!");
 }
-if (!display) {
+if (!display || !log) {
   throw new Error("Display not found!");
 }
 
+// Global variables
 let number1: number | null;
 let number2: number | null;
 let operator: string;
-
+let result: number;
 
 // Handle number button clicks
 const handleNumberButtonClick = (event: Event) => {
@@ -41,16 +40,20 @@ const handleOperatorButtonClick = (event: Event) => {
         if (!number1) {
             number1 = Number(display.textContent);
             operator = buttonValue;
+            log.textContent += number1 + operator;
             display.textContent = '';
         } else if (!number2) {
             number2 = Number(display.textContent);
-            const result = calulateResult(number1, number2, operator);
-            operator = buttonValue;
-            number1 = Number(result);
-            display.textContent = String(result);
+            result = calulateResult(number1, number2, operator);
+            log.textContent = String(result);
+            display.textContent = '';
+            number1 = result;
             number2 = null;
+            operator = buttonValue;
+            log.textContent += operator;
+            
         }
-        display.textContent += buttonValue;
+        
     }
     
 }
