@@ -5,20 +5,32 @@ const equalButton = document.querySelector<HTMLButtonElement>('.equal');
 const clearButton = document.querySelector<HTMLButtonElement>('.clear');
 const display = document.querySelector<HTMLDivElement>('.calculator__display');
 const log = document.querySelector<HTMLDivElement>('.calculator-log');
+const sqrtButton = document.querySelector<HTMLButtonElement>('.sqrt')
+const inverseButton = document.querySelector<HTMLButtonElement>('.inverse')
+const percentButton = document.querySelector<HTMLButtonElement>('.percent')
 
 // Check if all elements are found
-if (!numberButtons || !operatorButtons || !equalButton || !clearButton) {
+if (!numberButtons || 
+    !operatorButtons || 
+    !equalButton || 
+    !clearButton || 
+    !sqrtButton || 
+    !inverseButton ||
+    !percentButton) {
   throw new Error("Buttons not found!");
 }
+
 if (!display || !log) {
   throw new Error("Display not found!");
 }
+
 
 // Global variables
 let number1: number
 let number2: number 
 let operator: string;
 let result: number;
+
 
 // Handle number button clicks
 const handleNumberButtonClick = (event: Event) => {
@@ -67,7 +79,57 @@ const handleOperatorButtonClick = (event: Event) => {
     
 }
 
-// Clear display
+const handleSquareRootButtonClick = () => {
+    if (number1) {
+        result = specialCalculateResult(number1, '√');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    } else if (!number1 && display.textContent?.trim()) {
+        number1 = Number(display.textContent);
+        result = specialCalculateResult(number1, '√');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    
+    }
+}
+
+
+const handleInverseButtonClick = () => {
+    if (number1) {
+        result = specialCalculateResult(number1, '+/-');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    } else if (!number1 && display.textContent?.trim()) {
+        number1 = Number(display.textContent);
+        result = specialCalculateResult(number1, '+/-');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    
+    }
+}
+
+
+const handlePercentButtonClick = () => {
+    if (number1) {
+        result = specialCalculateResult(number1, '%');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    } else if (!number1 && display.textContent?.trim()) {
+        number1 = Number(display.textContent);
+        result = specialCalculateResult(number1, '%');
+        number1 = result;
+        log.textContent = String(result);
+        display.textContent = '';
+    
+    }
+}
+
+// Reset calculator
 const handleClearButtonClick = () => {
     display.textContent = '';
     log.textContent = '';
@@ -120,8 +182,21 @@ const calulateResult = (number1: number, number2: number, operator: string) => {
     return result;
 }
 
-const specialCalculateResult = (number: number) => {
-
+const specialCalculateResult = (number: number, specialOperator: string) => {
+    switch (specialOperator) {
+        case '√':
+            result = Math.sqrt(number)
+            break
+        case '+/-':
+            result = number * -1
+            break
+        case '%':
+            result = number / 100
+            break
+    default:
+            throw new Error("Invalid operator!")
+    }
+    return result;
 }
 
 
@@ -136,3 +211,6 @@ operatorButtons.forEach(button => {
 
 clearButton.addEventListener('click', handleClearButtonClick);
 equalButton.addEventListener('click', handleEqualButtonClick);
+sqrtButton.addEventListener('click', handleSquareRootButtonClick);
+inverseButton.addEventListener('click', handleInverseButtonClick);
+percentButton.addEventListener('click', handlePercentButtonClick);
