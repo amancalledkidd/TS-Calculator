@@ -15,8 +15,8 @@ if (!display || !log) {
 }
 
 // Global variables
-let number1: number | null;
-let number2: number | null;
+let number1: number
+let number2: number 
 let operator: string;
 let result: number;
 
@@ -34,26 +34,29 @@ const handleOperatorButtonClick = (event: Event) => {
     const buttonValue = button.value;
     console.log(buttonValue);
     // Stop adding operators if display is empty
-    if (display.textContent === '') {
+    // Trim to clear invisible characters
+    if (!display.textContent?.trim() && !log.textContent?.trim()) {
+        display.textContent = ''
+        log.textContent = '';
+    } else if (!number1) {
+        console.log(display.textContent)
+        console.log("2e")
+        number1 = Number(display.textContent);
+        operator = buttonValue;
+        log.textContent += number1 + operator;
         display.textContent = '';
-    } else {
-        if (!number1) {
-            number1 = Number(display.textContent);
-            operator = buttonValue;
-            log.textContent += number1 + operator;
-            display.textContent = '';
-        } else if (!number2) {
-            number2 = Number(display.textContent);
-            result = calulateResult(number1, number2, operator);
-            log.textContent = String(result);
-            display.textContent = '';
-            number1 = result;
-            number2 = null;
-            operator = buttonValue;
-            log.textContent += operator;
-            
-        }
-        
+    } else if (!operator) {
+        operator = buttonValue
+        log.textContent += operator
+    } else if (!number2) {
+        number2 = Number(display.textContent);
+        result = calulateResult(number1, number2, operator);
+        log.textContent = String(result);
+        display.textContent = '';
+        number1 = result;
+        number2 = 0;
+        operator = buttonValue;
+        log.textContent += operator;
     }
     
 }
@@ -61,13 +64,26 @@ const handleOperatorButtonClick = (event: Event) => {
 // Clear display
 const handleClearButtonClick = () => {
     display.textContent = '';
+    log.textContent = '';
+    number1 = 0;
+    number2 = 0;
+    result = 0;
+    operator = '';
 }
 
 // Calculate result on equal button click
 const handleEqualButtonClick = () => {
-    // const displayValue = display.textContent;
-    // const result = calulateResult(number1, number2, operator);
-    // display.textContent = String(result);
+    if (display.textContent === '') {
+        display.textContent = ''
+    } else if (!number2) {
+        number2 = Number(display.textContent);
+        result = calulateResult(number1, number2, operator);
+        number1 = Number(result)
+        operator = '';
+        log.textContent = String(result);
+        display.textContent = '';
+        number2 = 0
+    } 
 }
 
 
