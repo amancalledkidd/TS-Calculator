@@ -26,11 +26,14 @@ const handleNumberButtonClick = (event: Event) => {
     const buttonValue = button.value;
     console.log(buttonValue);
     if (buttonValue === "." && !display.textContent?.trim()) {
-        display.textContent = ''
+        display.textContent = '0.'
+    } else if (display.textContent?.includes(".") && buttonValue === ".") {
+        
+    } else if (display.textContent?.trim() == "0" && buttonValue == "0") {
+
     } else {
         display.textContent += buttonValue;
     }
-    
 }
 
 // Handle operator button clicks
@@ -44,8 +47,6 @@ const handleOperatorButtonClick = (event: Event) => {
         display.textContent = ''
         log.textContent = '';
     } else if (!number1) {
-        console.log(display.textContent)
-        console.log("2e")
         number1 = Number(display.textContent);
         operator = buttonValue;
         log.textContent += number1 + operator;
@@ -80,6 +81,8 @@ const handleClearButtonClick = () => {
 const handleEqualButtonClick = () => {
     if (display.textContent === '') {
         display.textContent = ''
+    } else if (!operator) {
+    
     } else if (!number2) {
         number2 = Number(display.textContent);
         result = calulateResult(number1, number2, operator);
@@ -95,7 +98,6 @@ const handleEqualButtonClick = () => {
 
 // Function to calculate result
 const calulateResult = (number1: number, number2: number, operator: string) => {
-    let result: number;
     switch (operator) {
         case '+':
             result = number1 + number2;
@@ -109,12 +111,18 @@ const calulateResult = (number1: number, number2: number, operator: string) => {
         case '/':
             result = number1 / number2;
             break;
+        case '^':
+            result = number1 ** number2;
+            break;
         default:
             throw new Error("Invalid operator!");
     }
     return result;
 }
 
+const specialCalculateResult = (number: number) => {
+
+}
 
 
 // Add event listeners
