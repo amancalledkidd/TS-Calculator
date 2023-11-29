@@ -25,7 +25,12 @@ const handleNumberButtonClick = (event: Event) => {
     const button = event.target as HTMLButtonElement;
     const buttonValue = button.value;
     console.log(buttonValue);
-    display.textContent += buttonValue;
+    if (buttonValue === "." && !display.textContent?.trim()) {
+        display.textContent = ''
+    } else {
+        display.textContent += buttonValue;
+    }
+    
 }
 
 // Handle operator button clicks
