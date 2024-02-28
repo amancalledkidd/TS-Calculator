@@ -69,7 +69,7 @@ const handleOperatorButtonClick = (event: Event) => {
         log.textContent += operator
     } else if (!number2) {
         number2 = Number(display.textContent);
-        result = calulateResult(number1, number2, operator);
+        result = calculateResult(number1, number2, operator);
         log.textContent = String(result);
         display.textContent = '';
         number1 = result;
@@ -150,7 +150,7 @@ const handleEqualButtonClick = () => {
         return
     } else if (!number2) {
         number2 = Number(display.textContent);
-        result = calulateResult(number1, number2, operator);
+        result = calculateResult(number1, number2, operator);
         number1 = Number(result)
         operator = '';
         log.textContent = String(result);
@@ -163,7 +163,7 @@ const handleEqualButtonClick = () => {
 
 
 // Function to calculate result
-const calulateResult = (number1: number, number2: number, operator: string) => {
+const calculateResult = (number1: number, number2: number, operator: string) => {
     switch (operator) {
         case '+':
             result = number1 + number2;

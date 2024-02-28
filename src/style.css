@@ -1,130 +1,121 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Base font settings */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
+  /* Color scheme for dark mode */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /* Font rendering optimizations */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-}
-
-.calulator-container {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  border: 1px solid black;
-  justify-content: center;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr;
-  grid-gap: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  
-}
-.calculator__display {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-.calculator__log {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-
-.calculator__display input {
-  width: 100%;
-  height: 100%;
-  font-size: 3.2em;
-  line-height: 1.1;
-  text-align: left;
-  border: none;
-  background: none;
-  color: #fff;
-  padding: 0 10px;
-  box-shadow: none;
-  outline: none;
-  appearance: none;
-}
-
-.calulator__buttons {
-  display: grid;
-  grid-template-columns: repeat(4,75px);
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  background-color: var(--bg-color, #242424);
+  color: var(--text-color, #ffffff);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+header {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.card {
-  padding: 2em;
+.calculator-container {
+  max-width: 400px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--container-bg, #333333);
 }
 
-.read-the-docs {
-  color: #888;
+.calculator__display, .calculator__log {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: var(--display-bg, #ffffff);
+  border: none;
+  border-radius: 8px;
+  color: var(--display-color, #000000);
+  padding: 20px;
+  margin-bottom: 10px;
 }
 
+.calculator__display input, .calculator__log div {
+  width: 100%;
+  font-size: 2em;
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: right;
+}
+
+.calculator__buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
 
 button {
+  padding: 15px;
+  border: none;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--button-bg, #4a4a4a);
+  color: var(--button-color, #fff);
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s ease;
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: var(--button-hover-bg, #616161);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+button:active {
+  transform: translateY(2px);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --bg-color: #f0f0f0;
+    --text-color: #213547;
+    --container-bg: #ffffff;
+    --display-bg: #f9f9f9;
+    --display-color: #213547;
+    --button-bg: #e0e0e0;
+    --button-color: #213547;
+    --button-hover-bg: #d5d5d5;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@media (max-width: 600px) {
+  .calculator-container {
+    padding: 15px;
+    gap: 15px;
   }
+
+  .calculator__buttons {
+    gap: 8px;
+  }
+
   button {
-    background-color: #f9f9f9;
+    padding: 10px;
+    font-size: 1rem;
   }
 }
