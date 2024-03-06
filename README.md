@@ -1,7 +1,7 @@
 # TypeScript Calculator
 
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![CSS]https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white
+![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
 
 
 ## Introduction
