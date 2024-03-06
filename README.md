@@ -1,5 +1,9 @@
 # TypeScript Calculator
 
+![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![CSS]https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white
+
+
 ## Introduction
 
 This project is a simple web-based calculator built with TypeScript. It demonstrates basic arithmetic operations like addition, subtraction, multiplication, and division, along with some advanced features such as calculating square roots, percentages, and inverse values. The calculator employs DOM manipulation to interact with the HTML structure, providing a dynamic user experience.
